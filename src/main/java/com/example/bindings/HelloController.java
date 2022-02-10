@@ -2,7 +2,6 @@ package com.example.bindings;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -13,19 +12,22 @@ import java.util.ResourceBundle;
 public class HelloController implements Initializable {
 
   @FXML private Text txt1;
- private StringProperty cleverString= new SimpleStringProperty ();
+  private final StringProperty cleverString = new SimpleStringProperty();
+
+    private void changeValuesOfText(String newValue) {
+        cleverString.set(newValue);
+        txt1.setText(cleverString.get());
+    }
 
 
   @Override
   public void initialize(URL location, ResourceBundle resources) { // starts here
-  cleverString.set("Hellooooooo");
-    txt1.setText(cleverString.get());
+      changeValuesOfText ("Hellooooooo");
   } // ends here
 
   @FXML
-  void changeValues(ActionEvent event) {
-    cleverString.set("And Change !!!");
-    txt1.setText(cleverString.get());
+  void changeValues() {
+      changeValuesOfText ("And Change !!!");
   }
 
 
